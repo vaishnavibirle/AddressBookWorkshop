@@ -43,4 +43,22 @@ public class AddressBookTest {
         Contact editContact = addressBook.editContact(contactList, "SIYA", "address","Chandni Chowk");
         Assertions.assertEquals("Civil Line", editContact.address);
     }
+
+    @Test
+    public void givenContactName_whenDeleted_ShouldReturn_true(){
+        AddressBook addressBook = new AddressBook();
+        Contact contact = new Contact("SIYA", "Kapoor", "IUDP", "Amravati", "MH", 444601, 952772864, "siyas@gmail.com");
+        List<Contact> contactList = addressBook.addContact(contact);
+        List<Contact> deleteContactList = addressBook.deleteContact(contactList, "SIYA");
+        Assertions.assertEquals(0, deleteContactList.size());
+    }
+
+    @Test
+    public void givenContactName_whenDeleted_ShouldReturn_false(){
+        AddressBook addressBook = new AddressBook();
+        Contact contact = new Contact("SIYA", "Kapoor", "IUDP", "Amravati", "MH", 444601, 952772864, "siyas@gmail.com");
+        List<Contact> contactList = addressBook.addContact(contact);
+        List<Contact> deleteContactList = addressBook.deleteContact(contactList, "Sam");
+        Assertions.assertEquals(0, deleteContactList.size());
+    }
 }

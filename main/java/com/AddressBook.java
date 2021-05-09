@@ -5,13 +5,14 @@ import java.util.List;
 
 public class AddressBook {
 
-    public List<Contact> contactList;
+    public static List<Contact> contactList;
 
 
     /*Adding Welcome Message
     *Creating Contact class to creating contact in addressbook*
     *Adding Contacts in Address Book
-    * Editing contact details in Address Book*/
+    * Editing contact details in Address Book
+    * Deleting contact details in address Book*/
     public static void main(String[] args) {
         System.out.println("Welcome to Address Book Program");
     }
@@ -66,6 +67,22 @@ public class AddressBook {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public List<Contact> deleteContact(List<Contact> contactList, String name) {
+        try {
+            for (Contact contact : contactList) {
+                if (contact.firstName.equals(name)) {
+                    contactList.remove(contactList.indexOf(contact));
+                    System.out.println("Contact deleted with name : " +name);
+                    break;
+                }
+            }
+            return contactList;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return contactList;
     }
 }
 
