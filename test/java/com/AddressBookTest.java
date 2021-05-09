@@ -1,8 +1,11 @@
 package com;
 
+import com.AddressBook;
+import com.Contact;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.BooleanSupplier;
 
@@ -60,5 +63,27 @@ public class AddressBookTest {
         List<Contact> contactList = addressBook.addContact(contact);
         List<Contact> deleteContactList = addressBook.deleteContact(contactList, "Sam");
         Assertions.assertEquals(0, deleteContactList.size());
+    }
+
+    @Test
+    public void givenListOfContacts_whenAdded_ShouldReturn_false() {
+        AddressBook addressBook = new AddressBook();
+        List<Contact> contactDataList = new ArrayList<>();
+        contactDataList.add(new Contact("SIYA", "Kapoor", "IUDP", "Amravati", "MH", 444601, 952772864, "siyas@gmail.com"));
+        contactDataList.add(new Contact("Yash", "Pareek", "Ekdant", "Akola", "MH", 442001, 879459789, "yash@gmail.com"));
+        contactDataList.add(new Contact("Vaishnavi", "Birle", "Purva Nagar", "Akot", "MH", 442001, 974507356, "vaishnavi@gmail.com"));
+        List<Contact> contactList = addressBook.addContactList(contactDataList);
+        Assertions.assertEquals(3, contactList.size());
+    }
+
+    @Test
+    public void givenListOfContacts_whenAdded_ShouldReturn_true() {
+        AddressBook addressBook = new AddressBook();
+        List<Contact> contactDataList = new ArrayList<>();
+        contactDataList.add(new Contact("SIYA", "Kapoor", "IUDP", "Amravati", "MH", 444601, 952772864, "siyas@gmail.com"));
+        contactDataList.add(new Contact("Yash", "Pareek", "Ekdant", "Akola", "MH", 442001, 879459789, "yash@gmail.com"));
+        contactDataList.add(new Contact("Vaishnavi", "Birle", "Purva Nagar", "Akot", "MH", 442001, 974507356, "vaishnavi@gmail.com"));
+        List<Contact> contactList = addressBook.addContactList(contactDataList);
+        Assertions.assertEquals(0, contactList.size());
     }
 }
